@@ -50,8 +50,9 @@ pd.set_option('display.float', '{:.2f}'.format)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', 50)
 
-"""# Load Data
+# Load Data
 
+"""
 Note: the data has been cleaned up and transformed. To learn more about the original data, check here
 https://www.kaggle.com/code/faressayah/lending-club-loan-defaulters-prediction/notebook
 """
@@ -78,7 +79,7 @@ data = data[new_cols]
 
 data.columns
 
-"""# Data preparation"""
+# Data preparation
 
 train, test = train_test_split(data, test_size=0.33, random_state=42)
 
@@ -113,10 +114,9 @@ X_test  = np.array(X_test).astype(np.float32)
 y_train = np.array(y_train).astype(np.float32)
 y_test  = np.array(y_test).astype(np.float32)
 
-"""# Simple Neural Network model
+#Simple Neural Network model
 
 ## Build Model
-"""
 
 # Build a simple neural network model
 model = Sequential()
@@ -138,7 +138,7 @@ model.add(BatchNormalization())
 model.add(Dropout(0.1))
 model.add(Dense(1, activation='sigmoid'))  # Binary classification, so use sigmoid activation
 
-"""## Train Model"""
+## Train Model
 
 # Compile the model; adjusted learning rate to 0.0005 for additional precision
 model.compile(loss='binary_crossentropy', optimizer=Adam(learning_rate = 0.0005), metrics=[Recall(), 'accuracy'])
@@ -156,7 +156,7 @@ plt.xlabel('Epoch')
 plt.legend(['Train', 'Validation'], loc='upper right')
 plt.show()
 
-"""## Evaluate Model"""
+## Evaluate Model
 
 # assuming 'model' is your trained model
 test_loss, test_recall, test_accuracy = model.evaluate(X_test, y_test, verbose=2)
@@ -165,7 +165,7 @@ print(f'Test recall: {test_recall}')
 
 y_pred = (model.predict(X_test) > 0.5).astype(int)
 
-"""## Confusion Matrix"""
+## Confusion Matrix
 
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
