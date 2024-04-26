@@ -186,9 +186,4 @@ sns.heatmap(cm, annot=True, fmt='d')
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
 
-"""Questions to think:
-
-1. How good is the model performance?
-2. Can you think of ways to further improve the model performance?
-"""
 
